@@ -1,0 +1,8 @@
+/discover   /
+/movies     /
+/shows      /
+/persons    /
+/search     /
+/movie/:id  /
+/tv/:id     /
+/person/:id /

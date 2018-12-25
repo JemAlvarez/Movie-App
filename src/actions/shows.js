@@ -12,10 +12,38 @@ export const getShowById = (show) => {
     }
 }
 
-export const startGetShowById = (id => {
+export const startGetShowById = (id) => {
     return (dispatch) => {
         let req = axios.get(`${baseUrl}/tv/${id}?api_key=${apiKey}&language=en-US`)
             .then(res => res.data)
         req.then(res => dispatch(getShowById(res)))
     }
+}
+
+// GET_SHOWS_AIRING
+export const getShowsAiring = (shows) => ({
+    type: 'GET_SHOWS_AIRING',
+    shows
 })
+
+export const startGetShowsAiring = () => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/tv/on_the_air?api_key=${apiKey}&language=en-US`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getShowsAiring(res)))
+    }
+}
+
+// GET_TRENDING_SHOWS
+export const getTrendingShows = (trending) => ({
+    type: 'GET_TRENDING_SHOWS',
+    trending
+})
+
+export const startGetTrendingShows = () => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/trending/tv/week?api_key=${apiKey}`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getTrendingShows(res)))
+    }
+}

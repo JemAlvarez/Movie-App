@@ -12,10 +12,10 @@ export const getAllBySearch = (all) => {
     }
 }
 
-export const startGetAllBySearch = ((keyword, page) => {
+export const startGetAllBySearch = (keyword, page) => {
     return (dispatch) => {
         let req = axios.get(`${baseUrl}/search/multi?api_key=${apiKey}&language=en-US&query=${keyword}&page=${page}&include_adult=false`)
             .then(res => res.data.results)
         req.then(res => dispatch(getAllBySearch(res)))
     }
-})
+}

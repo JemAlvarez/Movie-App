@@ -1,41 +1,57 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { startGetMovieById } from '../actions/movies'
-import { startGetShowById } from '../actions/shows'
-import { startGetPersonById } from '../actions/persons'
 import { setPageNum } from '../actions/page'
 import { startGetAllBySearch } from '../actions/multi'
 
-const SearchPage = (props) => (
-    <div>
-        {props.all.map(all => {
-            let itemDispatch
-            if (all.media_type === 'movie') {
-                itemDispatch = startGetMovieById(all.id)
-            } else if (all.media_type === 'tv') {
-                itemDispatch = startGetShowById(all.id)
-            } else if (all.media_type === 'person') {
-                itemDispatch = startGetPersonById(all.id)
+// Search Page
+class SearchPage extends React.Component {
+    // Redirect to home if state "all" is empty
+    componentDidMount = () => {
+        setTimeout(() => {
+            if (this.props.all.length === 0) {
+                // this.props.history.push('/')
             }
+        }, 100);
+    }
+    renderAll = () => {
+        return this.props.all.map(all => {
             return (
                 <Link
                     to={`/${all.media_type}/${all.id}`}
                     key={all.id}
-                    onClick={() => {
-                        props.dispatch(itemDispatch)
-                    }}
                 >
-                    {all.title || all.name}
+                    <p>{all.title || all.name}</p>
                 </Link>
             )
-        })}
-        <input type="number" value={props.page} min={1} onChange={(e) => {
-            props.dispatch(setPageNum(Number(e.target.value)))
-            props.dispatch(startGetAllBySearch(props.keyword, Number(e.target.value)))
-        }} />
-    </div>
-)
+        })
+    }
+    render() {
+        return (
+            <div>
+                {
+                    this.props.all.length === 0 ? (
+                        <p>Nothing found, try searching for something else.</p>
+                    ) : (
+                            this.renderAll()
+                        )
+                }
+                <input
+                    type="number"
+                    value={this.props.page}
+                    min={1}
+                    onKeyDown={(e) => {
+                        e.preventDefault()
+                    }}
+                    onChange={(e) => {
+                        this.props.dispatch(setPageNum(Number(e.target.value)))
+                        this.props.dispatch(startGetAllBySearch(this.props.keyword, Number(e.target.value)))
+                    }}
+                />
+            </div>
+        )
+    }
+}
 
 
 const mapStateToProps = (state) => ({

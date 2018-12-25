@@ -1,8 +1,8 @@
-/discover   /discover
-# /movies     /
-# /shows      /
-# /persons    /
-# /search     /
-# /movie/:id  /
-# /tv/:id     /
-# /person/:id /
+/discover   /
+/movies     /
+/shows      /
+/persons    /
+/search     /
+/movie/:id  /
+/tv/:id     /
+/person/:id /

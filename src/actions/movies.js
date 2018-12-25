@@ -1,40 +1,22 @@
 import axios from 'axios'
 
 // API_KEY & BASE_URL
-const api_key = process.env.MOVIE_API_KEY
-const base_url = 'https://api.themoviedb.org/3'
-
-// GET_MOVIE_DETAILS
+const apiKey = process.env.MOVIE_API_KEY
+const baseUrl = 'https://api.themoviedb.org/3'
 
 // GET_MOVIE_BY_ID
-
-// GET_MOVIES_BY_SEARCH
-// export const getMoviesBySearch = (keyword) => {
-//     let arr = []
-//     const req = axios.get(`${base_url}/search/movie?api_key=${api_key}&language=en-US&query=${keyword}&page=1&include_adult=false`)
-//         .then(res => res.data.results)
-//     req.then(res => {
-//         res.map(mov => arr.push(mov))
-//     })
-//     console.log(arr)
-//     return {
-//         type: 'GET_MOVIES_BY_SEARCH',
-//         movsArr: arr
-//     }
-// }
-
-export const getMoviesBySearch = (movs) => {
+export const getMovieById = (mov) => {
     return {
-        type: 'GET_MOVIES_BY_SEARCH',
-        movs
+        type: 'GET_MOVIE_BY_ID',
+        mov
     }
 }
 
-export const startGetMoviesBySearch = (keyword => {
+export const startGetMovieById = (id => {
     return (dispatch) => {
-        let req = axios.get(`${base_url}/search/movie?api_key=${api_key}&language=en-US&query=${keyword}&page=1&include_adult=false`)
-            .then(res => res.data.results)
-        req.then(res => dispatch(getMoviesBySearch(res)))
+        let req = axios.get(`${baseUrl}/movie/${id}?api_key=${apiKey}&language=en-US`)
+            .then(res => res.data)
+        req.then(res => dispatch(getMovieById(res)))
     }
 })
 

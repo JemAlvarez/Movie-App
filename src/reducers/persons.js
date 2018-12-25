@@ -1,8 +1,8 @@
-// Movies Reducer
+// Persons Reducer
 export default (state = [], action) => {
     switch (action.type) {
-        case 'GET_MOVIE_BY_ID':
-            return action.mov
+        case 'GET_PERSON_BY_ID':
+            return action.person
         default:
             return state
     }

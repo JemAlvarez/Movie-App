@@ -19,3 +19,17 @@ export const startGetPersonById = (id => {
         req.then(res => dispatch(getPersonById(res)))
     }
 })
+
+// GET_POPULAR_PERSONS
+export const getPopularPersons = (popular) => ({
+    type: 'GET_POPULAR_PERSONS',
+    popular
+})
+
+export const startGetPopularPersons = (page) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/person/popular?api_key=${apiKey}&language=en-US&page=${page}`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getPopularPersons(res)))
+    }
+}

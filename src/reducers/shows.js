@@ -19,3 +19,13 @@ export const trendingShowsReducer = (state = [], action) => {
             return state
     }
 }
+
+// Popular Shows Reducer
+export const popularShowsReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_POPULAR_SHOWS':
+            return action.popular
+        default:
+            return state
+    }
+}

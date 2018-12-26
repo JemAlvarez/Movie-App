@@ -19,3 +19,13 @@ export const trendingMoviesReducer = (state = [], action) => {
             return state
     }
 }
+
+// Popular Movies Reducer
+export const popularMoviesReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_POPULAR_MOVIES':
+            return action.popular
+        default:
+            return state
+    }
+}

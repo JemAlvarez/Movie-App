@@ -47,3 +47,17 @@ export const startGetTrendingShows = () => {
         req.then(res => dispatch(getTrendingShows(res)))
     }
 }
+
+// GET_POPULAR_SHOWS
+export const getPopularShows = (popular) => ({
+    type: 'GET_POPULAR_SHOWS',
+    popular
+})
+
+export const startGetPopularShows = (page) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/tv/popular?api_key=${apiKey}&language=en-US&page=${page}`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getPopularShows(res)))
+    }
+}

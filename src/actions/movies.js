@@ -46,13 +46,22 @@ export const startGetTrendingMovies = () => {
     }
 }
 
-// GET_MOVIES_POPULAR
+// GET_POPULAR_MOVIES
+export const getPopularMovies = (popular) => ({
+    type: 'GET_POPULAR_MOVIES',
+    popular
+})
+
+export const startGetPopularMovies = (page) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&language=en-US&page=${page}&region=US`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getPopularMovies(res)))
+    }
+}
+
 
 // GET_MOVIES_UPCOMING
-
-// GET_MOVIES_TOP
-
-// GET_MOVIES_LATEST
 
 // GET_MOVIES_SIMILAR
 

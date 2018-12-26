@@ -6,14 +6,6 @@ import { startGetAllBySearch } from '../actions/multi'
 
 // Search Page
 class SearchPage extends React.Component {
-    // Redirect to home if state "all" is empty
-    componentDidMount = () => {
-        setTimeout(() => {
-            if (this.props.all.length === 0) {
-                // this.props.history.push('/')
-            }
-        }, 100);
-    }
     renderAll = () => {
         return this.props.all.map(all => {
             return (

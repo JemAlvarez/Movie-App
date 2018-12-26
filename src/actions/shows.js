@@ -28,7 +28,7 @@ export const getShowsAiring = (shows) => ({
 
 export const startGetShowsAiring = () => {
     return (dispatch) => {
-        let req = axios.get(`${baseUrl}/tv/on_the_air?api_key=${apiKey}&language=en-US`)
+        let req = axios.get(`${baseUrl}/tv/on_the_air?api_key=${apiKey}&language=en-US&region=US`)
             .then(res => res.data.results)
         req.then(res => dispatch(getShowsAiring(res)))
     }

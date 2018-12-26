@@ -19,3 +19,19 @@ export const startGetAllBySearch = (keyword, page) => {
         req.then(res => dispatch(getAllBySearch(res)))
     }
 }
+
+// GET_ALL_SUGGESTION
+export const getAllSuggestion = (all) => {
+    return {
+        type: 'GET_ALL_SUGGESTION',
+        all
+    }
+}
+
+export const startGetAllSuggestion = (keyword, page) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/search/multi?api_key=${apiKey}&language=en-US&query=${keyword}&page=${page}&include_adult=false`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getAllSuggestion(res)))
+    }
+}

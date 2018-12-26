@@ -26,7 +26,7 @@ export const getMoviesPlaying = (movs) => ({
 
 export const startGetMoviesPlaying = () => {
     return (dispatch) => {
-        let req = axios.get(`${baseUrl}/movie/now_playing?api_key=${apiKey}&language=en-US`)
+        let req = axios.get(`${baseUrl}/movie/now_playing?api_key=${apiKey}&language=en-US&region=US`)
             .then(res => res.data.results)
         req.then(res => dispatch(getMoviesPlaying(res)))
     }

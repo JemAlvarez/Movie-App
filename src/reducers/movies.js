@@ -29,3 +29,13 @@ export const popularMoviesReducer = (state = [], action) => {
             return state
     }
 }
+
+// Popular Movies Page Reducer
+export const popularMoviesPageReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'GET_POPULAR_MOVIES':
+            return action.pageCount
+        default:
+            return state
+    }
+}

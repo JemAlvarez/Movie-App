@@ -17,3 +17,13 @@ export const popularPersonsReducer = (state = [], action) => {
             return state
     }
 }
+
+// Popular Persons Page Reducer
+export const popularPersonsPageReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'GET_POPULAR_PERSONS':
+            return action.pageCount
+        default:
+            return state
+    }
+}

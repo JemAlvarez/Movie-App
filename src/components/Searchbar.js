@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { history } from '../routers/AppRouter'
 import { startGetAllBySearch, startGetAllSuggestion } from '../actions/multi'
 import { setKeyword } from '../actions/keyword'
-import { setPageNum } from '../actions/page'
 import { startGetShowById } from '../actions/shows'
 import { startGetMovieById } from '../actions/movies'
 
@@ -51,7 +50,6 @@ class Searchbar extends React.Component {
                         e.preventDefault()
                         if (this.props.keyword.length >= 2) {
                             this.props.dispatch(startGetAllBySearch(this.props.keyword, 1))
-                            this.props.dispatch(setPageNum(1))
                             history.push('/search')
                             this.setState(() => ({ error: false }))
                             this.setState(() => ({ suggest: false }))

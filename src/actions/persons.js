@@ -21,15 +21,16 @@ export const startGetPersonById = (id => {
 })
 
 // GET_POPULAR_PERSONS
-export const getPopularPersons = (popular) => ({
+export const getPopularPersons = (popular, pageCount) => ({
     type: 'GET_POPULAR_PERSONS',
-    popular
+    popular,
+    pageCount
 })
 
 export const startGetPopularPersons = (page) => {
     return (dispatch) => {
         let req = axios.get(`${baseUrl}/person/popular?api_key=${apiKey}&language=en-US&page=${page}`)
-            .then(res => res.data.results)
-        req.then(res => dispatch(getPopularPersons(res)))
+            .then(res => res.data)
+        req.then(res => dispatch(getPopularPersons(res.results, res.total_pages)))
     }
 }

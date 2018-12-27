@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
 import { startGetPopularShows } from '../actions/shows'
-import { setPageNum } from '../actions/page'
 
 // Popular Shows Page
 class ShowsPage extends React.Component {
     componentWillMount = () => {
         this.props.dispatch(startGetPopularShows(1))
-        this.props.dispatch(setPageNum(1))
     }
     renderShows = () => {
         return this.props.shows.map(show => {
@@ -22,21 +21,26 @@ class ShowsPage extends React.Component {
             )
         })
     }
+    handlePageClick = ({ selected }) => {
+        this.props.dispatch(startGetPopularShows(selected + 1))
+    }
     render() {
         return (
             <div>
                 {this.renderShows()}
-                <input
-                    type="number"
-                    value={this.props.page}
-                    min={1}
-                    onKeyDown={(e) => {
-                        e.preventDefault()
-                    }}
-                    onChange={(e) => {
-                        this.props.dispatch(setPageNum(Number(e.target.value)))
-                        this.props.dispatch(startGetPopularShows(Number(e.target.value)))
-                    }}
+                <ReactPaginate
+                    previousLabel={"previous"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    initialPage={0}
+                    pageCount={this.props.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    activeClassName={"active"}
+                // breakClassName={"break-me"}
+                // containerClassName={"pagination"}
+                // subContainerClassName={"pages pagination"}
                 />
             </div>
         )
@@ -45,7 +49,8 @@ class ShowsPage extends React.Component {
 
 const mapStateToProps = (state) => ({
     page: state.pageNum,
-    shows: state.popularShows
+    shows: state.popularShows,
+    pageCount: state.popularShowsPage
 })
 
 export default connect(mapStateToProps)(ShowsPage)

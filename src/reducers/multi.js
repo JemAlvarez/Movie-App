@@ -17,3 +17,13 @@ export const allSuggestion = (state = [], action) => {
             return state
     }
 }
+
+// All Page Reducer
+export const allPageReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'GET_ALL_BY_SEARCH':
+            return action.pageCount
+        default:
+            return state
+    }
+}

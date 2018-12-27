@@ -47,16 +47,17 @@ export const startGetTrendingMovies = () => {
 }
 
 // GET_POPULAR_MOVIES
-export const getPopularMovies = (popular) => ({
+export const getPopularMovies = (popular, pageCount) => ({
     type: 'GET_POPULAR_MOVIES',
-    popular
+    popular,
+    pageCount
 })
 
 export const startGetPopularMovies = (page) => {
     return (dispatch) => {
         let req = axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}&language=en-US&page=${page}&region=US`)
-            .then(res => res.data.results)
-        req.then(res => dispatch(getPopularMovies(res)))
+            .then(res => res.data)
+        req.then(res => dispatch(getPopularMovies(res.results, res.total_pages)))
     }
 }
 

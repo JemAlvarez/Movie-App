@@ -49,15 +49,16 @@ export const startGetTrendingShows = () => {
 }
 
 // GET_POPULAR_SHOWS
-export const getPopularShows = (popular) => ({
+export const getPopularShows = (popular, pageCount) => ({
     type: 'GET_POPULAR_SHOWS',
-    popular
+    popular,
+    pageCount
 })
 
 export const startGetPopularShows = (page) => {
     return (dispatch) => {
         let req = axios.get(`${baseUrl}/tv/popular?api_key=${apiKey}&language=en-US&page=${page}`)
-            .then(res => res.data.results)
-        req.then(res => dispatch(getPopularShows(res)))
+            .then(res => res.data)
+        req.then(res => dispatch(getPopularShows(res.results, res.total_pages)))
     }
 }

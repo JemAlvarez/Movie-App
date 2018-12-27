@@ -29,3 +29,13 @@ export const popularShowsReducer = (state = [], action) => {
             return state
     }
 }
+
+// Popular Shows Page Reducer
+export const popularShowsPageReducer = (state = 0, action) => {
+    switch (action.type) {
+        case 'GET_POPULAR_SHOWS':
+            return action.pageCount
+        default:
+            return state
+    }
+}

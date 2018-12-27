@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import ReactPaginate from 'react-paginate'
 import { startGetPopularPersons } from '../actions/persons'
-import { setPageNum } from '../actions/page'
 
 // Popular Persons Page
 class PersonsPage extends React.Component {
     componentWillMount = () => {
         this.props.dispatch(startGetPopularPersons(1))
-        this.props.dispatch(setPageNum(1))
     }
     renderPersons = () => {
         return this.props.persons.map(ppl => {
@@ -22,21 +21,26 @@ class PersonsPage extends React.Component {
             )
         })
     }
+    handlePageClick = ({ selected }) => {
+        this.props.dispatch(startGetPopularPersons(selected + 1))
+    }
     render() {
         return (
             <div>
                 {this.renderPersons()}
-                <input
-                    type="number"
-                    value={this.props.page}
-                    min={1}
-                    onKeyDown={(e) => {
-                        e.preventDefault()
-                    }}
-                    onChange={(e) => {
-                        this.props.dispatch(setPageNum(Number(e.target.value)))
-                        this.props.dispatch(startGetPopularPersons(Number(e.target.value)))
-                    }}
+                <ReactPaginate
+                    previousLabel={"previous"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    initialPage={0}
+                    pageCount={this.props.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={this.handlePageClick}
+                    activeClassName={"active"}
+                // breakClassName={"break-me"}
+                // containerClassName={"pagination"}
+                // subContainerClassName={"pages pagination"}
                 />
             </div>
         )
@@ -45,7 +49,8 @@ class PersonsPage extends React.Component {
 
 const mapStateToProps = (state) => ({
     page: state.pageNum,
-    persons: state.popularPersons
+    persons: state.popularPersons,
+    pageCount: state.popularPersonsPage
 })
 
 export default connect(mapStateToProps)(PersonsPage)

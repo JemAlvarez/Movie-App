@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setPageNum } from '../actions/page'
+import ReactPaginate from 'react-paginate'
 import { startGetAllBySearch } from '../actions/multi'
 
 // Search Page
@@ -18,6 +18,9 @@ class SearchPage extends React.Component {
             )
         })
     }
+    handlePageClick = ({ selected }) => {
+        this.props.dispatch(startGetAllBySearch(this.props.keyword, selected + 1))
+    }
     render() {
         return (
             <div>
@@ -25,21 +28,25 @@ class SearchPage extends React.Component {
                     this.props.all.length === 0 ? (
                         <p>Nothing found, try searching for something else.</p>
                     ) : (
-                            this.renderAll()
+                            <div>
+                                {this.renderAll()}
+                                <ReactPaginate
+                                    previousLabel={"previous"}
+                                    nextLabel={"next"}
+                                    breakLabel={"..."}
+                                    initialPage={0}
+                                    pageCount={this.props.pageCount}
+                                    marginPagesDisplayed={2}
+                                    pageRangeDisplayed={5}
+                                    onPageChange={this.handlePageClick}
+                                    activeClassName={"active"}
+                                // breakClassName={"break-me"}
+                                // containerClassName={"pagination"}
+                                // subContainerClassName={"pages pagination"}
+                                />
+                            </div>
                         )
                 }
-                <input
-                    type="number"
-                    value={this.props.page}
-                    min={1}
-                    onKeyDown={(e) => {
-                        e.preventDefault()
-                    }}
-                    onChange={(e) => {
-                        this.props.dispatch(setPageNum(Number(e.target.value)))
-                        this.props.dispatch(startGetAllBySearch(this.props.keyword, Number(e.target.value)))
-                    }}
-                />
             </div>
         )
     }
@@ -49,7 +56,8 @@ class SearchPage extends React.Component {
 const mapStateToProps = (state) => ({
     all: state.all,
     page: state.pageNum,
-    keyword: state.keyword
+    keyword: state.keyword,
+    pageCount: state.allPage
 })
 
 export default connect(mapStateToProps)(SearchPage)

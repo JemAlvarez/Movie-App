@@ -6,6 +6,7 @@ import { startGetAllBySearch, startGetAllSuggestion } from '../actions/multi'
 import { setKeyword } from '../actions/keyword'
 import { startGetShowById } from '../actions/shows'
 import { startGetMovieById } from '../actions/movies'
+import { startGetPersonById } from '../actions/persons'
 
 class Searchbar extends React.Component {
     state = {
@@ -29,6 +30,8 @@ class Searchbar extends React.Component {
                                     this.props.dispatch(startGetMovieById(sug.id))
                                 } else if (sug.media_type === 'tv') {
                                     this.props.dispatch(startGetShowById(sug.id))
+                                } else if (sug.media_type === 'person') {
+                                    this.props.dispatch(startGetPersonById(sug.id))
                                 }
                             }}
                         >

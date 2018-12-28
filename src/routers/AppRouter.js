@@ -11,6 +11,7 @@ import PersonPage from '../components/PersonPage'
 import ShowsPage from '../components/ShowsPage'
 import SearchPage from '../components/SearchPage'
 import Navbar from '../components/Navbar'
+import Searchbar from '../components/Searchbar'
 
 export const history = createHistory()
 
@@ -18,6 +19,7 @@ const AppRouter = () => (
     <Router history={history}>
         <div>
             <Navbar />
+            <Searchbar />
             <Switch>
                 <Route path="/" component={HomePage} exact={true} />
                 <Route path="/movies" component={MoviesPage} />

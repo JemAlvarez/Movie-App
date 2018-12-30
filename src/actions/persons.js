@@ -34,3 +34,17 @@ export const startGetPopularPersons = (page) => {
         req.then(res => dispatch(getPopularPersons(res.results, res.total_pages)))
     }
 }
+
+// GET_KNOWN_FOR
+export const getKnownFor = (items) => ({
+    type: 'GET_KNOWN_FOR',
+    items
+})
+
+export const startGetKnownFor = (id) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/person/${id}/combined_credits?api_key=${apiKey}&language=en-US`)
+            .then(res => res.data.cast)
+        req.then(res => dispatch(getKnownFor(res)))
+    }
+}

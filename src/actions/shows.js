@@ -62,3 +62,31 @@ export const startGetPopularShows = (page) => {
         req.then(res => dispatch(getPopularShows(res.results, res.total_pages)))
     }
 }
+
+// GET_SHOW_CAST
+export const getShowCast = (cast) => ({
+    type: 'GET_SHOW_CAST',
+    cast
+})
+
+export const startGetShowCast = (id) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/tv/${id}/credits?api_key=${apiKey}`)
+            .then(res => res.data.cast)
+        req.then(res => dispatch(getShowCast(res)))
+    }
+}
+
+// GET_SHOW_RECOMMENDATION
+export const getShowRecommendation = (rec) => ({
+    type: 'GET_SHOW_RECOMMENDATION',
+    rec
+})
+
+export const startGetShowRecommendation = (id) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/tv/${id}/recommendations?api_key=${apiKey}&language=en-US&page=1`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getShowRecommendation(res)))
+    }
+}

@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startGetPersonById } from '../actions/persons'
+import { Link } from 'react-router-dom'
+import { startGetPersonById, startGetKnownFor } from '../actions/persons'
 
 class PersonPage extends React.Component {
     componentWillMount() {
         this.props.dispatch(startGetPersonById(this.props.match.params.id))
+        this.props.dispatch(startGetKnownFor(this.props.match.params.id))
     }
     renderJSX = () => {
         if (!!this.props.person) {
@@ -39,6 +41,16 @@ class PersonPage extends React.Component {
                         </div>
                         <div>
                             <h2>Known for</h2>
+                            {this.props.knownFor.map(item => (
+                                <div>
+                                    <Link to={`/${item.media_type}/${item.id}`}>
+                                        <img src={`https://image.tmdb.org/t/p/w154${item.poster_path}`} />
+                                    </Link>
+                                    <Link to={`/${item.media_type}/${item.id}`}>
+                                        <h3>{item.title || item.name}</h3>
+                                    </Link>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -55,7 +67,8 @@ class PersonPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    person: state.persons[0]
+    person: state.persons[0],
+    knownFor: state.knownFor
 })
 
 export default connect(mapStateToProps)(PersonPage)

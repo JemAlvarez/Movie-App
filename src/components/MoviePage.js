@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startGetMovieById } from '../actions/movies'
+import { startGetMovieById, startGetMovieCast, startGetMovieRecommendation } from '../actions/movies'
+import PersonCard from './PersonCard'
+import RecommendationCard from './RecommendationCard'
 
 class MoviePage extends React.Component {
     state = {
@@ -8,6 +10,8 @@ class MoviePage extends React.Component {
     }
     componentWillMount() {
         this.props.dispatch(startGetMovieById(this.props.match.params.id))
+        this.props.dispatch(startGetMovieCast(this.props.match.params.id))
+        this.props.dispatch(startGetMovieRecommendation(this.props.match.params.id))
     }
     renderJSX = () => {
         if (!!this.props.movie) {
@@ -38,9 +42,11 @@ class MoviePage extends React.Component {
                     </div>
                     <div>
                         <h2>cast</h2>
+                        {this.props.cast.map(person => <PersonCard person={person} size={92} />)}
                     </div>
                     <div>
                         <h2>recommendations</h2>
+                        {this.props.rec.map(rec => <RecommendationCard item={rec} />)}
                     </div>
                 </div>
             )
@@ -56,7 +62,9 @@ class MoviePage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    movie: state.movies[0]
+    movie: state.movies[0],
+    cast: state.movieCast,
+    rec: state.movieRecommendations
 })
 
 export default connect(mapStateToProps)(MoviePage)

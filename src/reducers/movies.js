@@ -39,3 +39,23 @@ export const popularMoviesPageReducer = (state = 0, action) => {
             return state
     }
 }
+
+// Movie Cast Reducer
+export const movieCastReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_MOVIES_CAST':
+            return action.cast.slice(0, 5)
+        default:
+            return state
+    }
+}
+
+// Movie Recommendation Reducer
+export const movieRecommendationReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_MOVIE_RECOMMENDATION':
+            return action.rec.slice(0, 8)
+        default:
+            return state
+    }
+}

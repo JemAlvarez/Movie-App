@@ -11,18 +11,30 @@ class HomePage extends React.Component {
         this.props.dispatch(startGetTrendingMovies())
         this.props.dispatch(startGetTrendingShows())
     }
+    renderItems = (item) => {
+        return (
+            <Link
+                to={`/movie/${item.id}`} key={item.id}
+            >
+                <div>
+                    <img src={`https://image.tmdb.org/t/p/w342${item.backdrop_path}`} />
+                    <p>{item.title || item.name}</p>
+                </div>
+            </Link>
+        )
+    }
     render() {
         return (
             <div>
                 <h3>In Theaters</h3>
-                {this.props.movs.map(mov => <Link to={`/movie/${mov.id}`} key={mov.id}><p>{mov.title}</p></Link>)}
+                {this.props.movs.map(mov => this.renderItems(mov))}
                 <h3>On TV</h3>
-                {this.props.shows.map(show => <Link to={`/tv/${show.id}`} key={show.id}><p>{show.name}</p></Link>)}
+                {this.props.shows.map(show => this.renderItems(show))}
                 <h3>Trending</h3>
                 <h6>Movies</h6>
-                {this.props.trendingMovies.map(mov => <Link to={`/movie/${mov.id}`} key={mov.id}><p>{mov.title}</p></Link>)}
+                {this.props.trendingMovies.map(mov => this.renderItems(mov))}
                 <h6>Shows</h6>
-                {this.props.trendingShows.map(show => <Link to={`/tv/${show.id}`} key={show.id}><p>{show.name}</p></Link>)}
+                {this.props.trendingShows.map(show => this.renderItems(show))}
             </div>
         )
     }

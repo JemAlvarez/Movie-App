@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { startGetPopularShows } from '../actions/shows'
+import MovieShowCard from './MovieShowCard'
 
 // Popular Shows Page
 class ShowsPage extends React.Component {
@@ -12,12 +12,7 @@ class ShowsPage extends React.Component {
     renderShows = () => {
         return this.props.shows.map(show => {
             return (
-                <Link
-                    to={`/tv/${show.id}`}
-                    key={show.id}
-                >
-                    <p>{show.name}</p>
-                </Link>
+                <MovieShowCard item={show} />
             )
         })
     }

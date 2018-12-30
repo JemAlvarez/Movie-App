@@ -61,9 +61,30 @@ export const startGetPopularMovies = (page) => {
     }
 }
 
+// GET_MOVIES_CAST
+export const getMovieCast = (cast) => ({
+    type: 'GET_MOVIES_CAST',
+    cast
+})
 
-// GET_MOVIES_UPCOMING
+export const startGetMovieCast = (id) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/movie/${id}/credits?api_key=${apiKey}`)
+            .then(res => res.data.cast)
+        req.then(res => dispatch(getMovieCast(res)))
+    }
+}
 
-// GET_MOVIES_SIMILAR
+// GET_MOVIE_RECOMMENDATION
+export const getMovieRecommendation = (rec) => ({
+    type: 'GET_MOVIE_RECOMMENDATION',
+    rec
+})
 
-// GET_MOVIES_RECOMMENDATION
+export const startGetMovieRecommendation = (id) => {
+    return (dispatch) => {
+        let req = axios.get(`${baseUrl}/movie/${id}/recommendations?api_key=${apiKey}&language=en-US&page=1`)
+            .then(res => res.data.results)
+        req.then(res => dispatch(getMovieRecommendation(res)))
+    }
+}

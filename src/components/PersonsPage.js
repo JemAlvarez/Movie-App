@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { startGetPopularPersons } from '../actions/persons'
+import PersonCard from './PersonCard'
 
 // Popular Persons Page
 class PersonsPage extends React.Component {
@@ -12,12 +12,7 @@ class PersonsPage extends React.Component {
     renderPersons = () => {
         return this.props.persons.map(ppl => {
             return (
-                <Link
-                    to={`/person/${ppl.id}`}
-                    key={ppl.id}
-                >
-                    <p>{ppl.name}</p>
-                </Link>
+                <PersonCard person={ppl} size={185} />
             )
         })
     }

@@ -1,6 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { startGetShowById } from '../actions/shows'
+import { startGetShowById, startGetShowCast, startGetShowRecommendation } from '../actions/shows'
+import PersonCard from './PersonCard'
+import RecommendationCard from './RecommendationCard';
 
 class ShowPage extends React.Component {
     state = {
@@ -10,6 +12,8 @@ class ShowPage extends React.Component {
     }
     componentWillMount() {
         this.props.dispatch(startGetShowById(this.props.match.params.id))
+        this.props.dispatch(startGetShowCast(this.props.match.params.id))
+        this.props.dispatch(startGetShowRecommendation(this.props.match.params.id))
     }
     renderJSX = () => {
         if (!!this.props.show) {
@@ -42,6 +46,7 @@ class ShowPage extends React.Component {
                     </div>
                     <div>
                         <h2>cast</h2>
+                        {this.props.cast.map(person => <PersonCard person={person} size={92} />)}
                     </div>
                     <div>
                         <h2>latest season</h2>
@@ -56,6 +61,7 @@ class ShowPage extends React.Component {
                     </div>
                     <div>
                         <h2>recommendations</h2>
+                        {this.props.rec.map(rec => <RecommendationCard item={rec} />)}
                     </div>
                 </div>
             )
@@ -71,7 +77,9 @@ class ShowPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    show: state.shows[0]
+    show: state.shows[0],
+    cast: state.showCast,
+    rec: state.showRecommendations
 })
 
 export default connect(mapStateToProps)(ShowPage)

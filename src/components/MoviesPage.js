@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { startGetPopularMovies } from '../actions/movies'
+import MovieShowCard from './MovieShowCard'
 
 // Popular Movies Page
 class MoviesPage extends React.Component {
@@ -12,12 +12,7 @@ class MoviesPage extends React.Component {
     renderMovs = () => {
         return this.props.movies.map(mov => {
             return (
-                <Link
-                    to={`/movie/${mov.id}`}
-                    key={mov.id}
-                >
-                    <p>{mov.title}</p>
-                </Link>
+                <MovieShowCard item={mov} />
             )
         })
     }

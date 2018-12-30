@@ -1,9 +1,9 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import { allReducer, allSuggestion, allPageReducer } from '../reducers/multi'
-import { moviesReducer, trendingMoviesReducer, popularMoviesReducer, popularMoviesPageReducer } from '../reducers/movies'
-import { showsReducer, trendingShowsReducer, popularShowsReducer, popularShowsPageReducer } from '../reducers/shows'
-import { personsReducer, popularPersonsReducer, popularPersonsPageReducer } from '../reducers/persons'
+import { moviesReducer, trendingMoviesReducer, popularMoviesReducer, popularMoviesPageReducer, movieCastReducer, movieRecommendationReducer } from '../reducers/movies'
+import { showsReducer, trendingShowsReducer, popularShowsReducer, popularShowsPageReducer, showCastReducer, showRecommendationReducer } from '../reducers/shows'
+import { personsReducer, popularPersonsReducer, popularPersonsPageReducer, knownForReducer } from '../reducers/persons'
 import keywordReducer from '../reducers/keyword'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
@@ -25,7 +25,12 @@ export default () => {
             popularShows: popularShowsReducer,
             popularShowsPage: popularShowsPageReducer,
             popularPersons: popularPersonsReducer,
-            popularPersonsPage: popularPersonsPageReducer
+            popularPersonsPage: popularPersonsPageReducer,
+            movieCast: movieCastReducer,
+            showCast: showCastReducer,
+            movieRecommendations: movieRecommendationReducer,
+            showRecommendations: showRecommendationReducer,
+            knownFor: knownForReducer
         }),
         composeEnhancers(applyMiddleware(thunk))
     )

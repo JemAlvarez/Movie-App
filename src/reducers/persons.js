@@ -27,3 +27,13 @@ export const popularPersonsPageReducer = (state = 0, action) => {
             return state
     }
 }
+
+// Known For Reducer
+export const knownForReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'GET_KNOWN_FOR':
+            return action.items.slice(0, 8)
+        default:
+            return state
+    }
+}

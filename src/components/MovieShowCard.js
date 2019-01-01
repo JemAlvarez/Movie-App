@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom'
 
 const MovieShowCard = ({ item }) => (
     <div>
-        <Link to={!!item.name ? `/tv/${item.id}` : `/movie/${item.id}`}><img src={`https://image.tmdb.org/t/p/w154${item.poster_path}`} /></Link>
+        <Link to={!!item.name ? `/tv/${item.id}` : `/movie/${item.id}`}>
+            <img
+                style={{ width: 154 }}
+                src={!!item.poster_path ? `https://image.tmdb.org/t/p/w154${item.poster_path}` : '/images/placeholder.jpg'}
+            />
+        </Link>
         <div>
             <h1><Link to={!!item.name ? `/tv/${item.id}` : `/movie/${item.id}`}>{item.title || item.name}</Link></h1>
             <h3>{item.vote_average}</h3>

@@ -4,14 +4,17 @@ import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { startGetAllBySearch } from '../actions/multi'
 import MovieShowCard from './MovieShowCard'
+import PersonCard from './PersonCard'
 
 // Search Page
 class SearchPage extends React.Component {
     renderAll = () => {
         return this.props.all.map(item => {
-            return (
-                <MovieShowCard item={item} />
-            )
+            if (item.media_type === 'tv' || item.media_type === 'movie') {
+                return <MovieShowCard item={item} />
+            } else if (item.media_type === 'person') {
+                return <PersonCard person={item} size={154} />
+            }
         })
     }
     handlePageClick = ({ selected }) => {

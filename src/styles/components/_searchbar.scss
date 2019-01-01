@@ -5,7 +5,7 @@
 .searchbar__input {
     background: lighten($background, 5%);
     border: none;
-    caret-color: transparent;
+    caret-color: $medium-red;
     color: $off-white;
     font-style: italic;
     outline: none;

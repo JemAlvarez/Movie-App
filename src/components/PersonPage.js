@@ -8,8 +8,8 @@ class PersonPage extends React.Component {
         this.props.dispatch(startGetPersonById(this.props.match.params.id))
         this.props.dispatch(startGetKnownFor(this.props.match.params.id))
     }
-    ifNull = (show) => {
-        return !show ? '-' : show
+    ifNull = (ppl) => {
+        return !ppl ? '-' : ppl
     }
     renderJSX = () => {
         if (!!this.props.person) {

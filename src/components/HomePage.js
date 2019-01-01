@@ -14,7 +14,8 @@ class HomePage extends React.Component {
     renderItems = (item) => {
         return (
             <Link
-                to={`/movie/${item.id}`} key={item.id}
+                to={!!item.name ? `/tv/${item.id}` : `/movie/${item.id}`}
+                key={item.id}
             >
                 <div>
                     <img src={`https://image.tmdb.org/t/p/w342${item.backdrop_path}`} />

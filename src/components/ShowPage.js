@@ -51,7 +51,10 @@ class ShowPage extends React.Component {
                     <div>
                         <h2>latest season</h2>
                         <div>
-                            <img src={`https://image.tmdb.org/t/p/w154${this.state.lastSeason.poster_path}`} />
+                            <img
+                                style={{ width: 154 }}
+                                src={!this.state.lastSeason.poster_path ? '/images/placeholder.jpg' : `https://image.tmdb.org/t/p/w154${this.state.lastSeason.poster_path}`}
+                            />
                             <div>
                                 <h2>{this.state.lastSeason.name}</h2>
                                 <h3>{`${this.state.lastSeason.air_date} | ${this.state.lastSeason.episode_count} episodes`}</h3>

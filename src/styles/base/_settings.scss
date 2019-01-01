@@ -1,0 +1,20 @@
+// Colors
+$background: #202523;
+$dark-red: #3F0D12;
+$medium-red: #66101F;
+$light-red: #821C2D;
+$white-red: #CE4865;
+$off-white: lighten($white-red, 30%);
+
+// Font Size
+$font-size-large: 1.8rem;
+$font-size-small: 1.4rem;
+
+// Spacing
+$s-size: 1.2rem;
+$m-size: 1.6rem;
+$l-size: 3.2rem;
+$xl-size: 4.8rem;
+
+// Breakpoints
+$desktop-breakpoint: 45rem;

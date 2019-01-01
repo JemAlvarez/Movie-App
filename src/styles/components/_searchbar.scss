@@ -1,0 +1,48 @@
+.searchbar {
+    background: lighten($background, 5%);
+}
+
+.searchbar__input {
+    background: lighten($background, 5%);
+    border: none;
+    caret-color: transparent;
+    color: $off-white;
+    font-style: italic;
+    outline: none;
+    padding: $m-size 0;
+    width: 100%;
+
+    &::placeholder {
+        color: $off-white;
+        opacity: 0.8;
+    }
+}
+
+.searchbar__suggestion-container {
+    padding: 0.3rem 0;
+}
+
+.searchbar__suggestion {
+    padding: 0.5rem 0;
+
+    a {
+        color: $off-white;
+        text-decoration: none;
+
+        &:hover {
+            color: $white-red;
+        }
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+.searchbar__error {
+    color: $off-white;
+    font-style: italic;
+    font-weight: 700;
+    margin: 0;
+    padding: $m-size 0;
+}

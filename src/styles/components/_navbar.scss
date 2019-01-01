@@ -1,0 +1,67 @@
+nav {
+    background-color: darken($background, 10%);
+    overflow: hidden;
+
+    a {
+        font-weight: 600;
+        text-transform: uppercase;
+        color: $medium-red;
+    }
+
+    border-bottom: 1px solid $medium-red;
+
+    .navWide {
+        display: none;
+
+        .wideDiv {
+            text-align: left;
+
+            a {
+                text-decoration: none;
+                display: inline-block;
+                padding: $l-size $m-size;
+            }
+        }
+    }
+
+    .navNarrow {
+
+        .burger {
+            cursor: pointer;
+            display: grid;
+            justify-content: end;
+            padding: $m-size 0;
+        }
+
+        .narrowLinks {
+            display: none;
+
+            a {
+                text-decoration: none;
+                display: block;
+                float: left;
+                clear: left;
+                padding: 1rem 0;
+            }
+        }
+    }
+}
+
+.active {
+    font-weight: 800;
+    color: $white-red;
+}
+
+@media (min-width: $desktop-breakpoint) {
+
+    nav {
+
+        .navWide {
+            display: block;
+        }
+
+        .navNarrow {
+            display: none;
+        }
+    }
+}

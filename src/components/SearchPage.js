@@ -3,18 +3,14 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { startGetAllBySearch } from '../actions/multi'
+import MovieShowCard from './MovieShowCard'
 
 // Search Page
 class SearchPage extends React.Component {
     renderAll = () => {
-        return this.props.all.map(all => {
+        return this.props.all.map(item => {
             return (
-                <Link
-                    to={`/${all.media_type}/${all.id}`}
-                    key={all.id}
-                >
-                    <p>{all.title || all.name}</p>
-                </Link>
+                <MovieShowCard item={item} />
             )
         })
     }

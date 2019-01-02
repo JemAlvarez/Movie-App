@@ -4,7 +4,7 @@ export const moviesReducer = (state = [], action) => {
         case 'GET_MOVIE_BY_ID':
             return [action.mov]
         case 'GET_MOVIES_PLAYING':
-            return action.movs.slice(0, 3)
+            return action.movs.slice(0, 4)
         default:
             return state
     }
@@ -14,7 +14,7 @@ export const moviesReducer = (state = [], action) => {
 export const trendingMoviesReducer = (state = [], action) => {
     switch (action.type) {
         case 'GET_TRENDING_MOVIES':
-            return action.trending.slice(0, 3)
+            return action.trending.slice(0, 4)
         default:
             return state
     }

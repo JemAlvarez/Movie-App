@@ -1,8 +1,8 @@
-.home {}
-
 .home__section {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    @media (min-width: $desktop-breakpoint) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 .home__subsection {

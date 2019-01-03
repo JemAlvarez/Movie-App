@@ -21,22 +21,25 @@ class ShowsPage extends React.Component {
     }
     render() {
         return (
-            <div>
+            <div className="content-container movies-shows">
                 {this.renderShows()}
-                <ReactPaginate
-                    previousLabel={"previous"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    initialPage={0}
-                    pageCount={this.props.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    activeClassName={"active"}
-                // breakClassName={"break-me"}
-                // containerClassName={"pagination"}
-                // subContainerClassName={"pages pagination"}
-                />
+                <div className="paginator">
+                    <ReactPaginate
+                        previousLabel={"<"}
+                        nextLabel={">"}
+                        breakLabel={"..."}
+                        initialPage={0}
+                        pageCount={this.props.pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={this.handlePageClick}
+                        activeClassName={"active"}
+                        pageLinkClassName={"page"}
+                        disabledClassName={"disabled-arrow"}
+                        activeClassName={"active-page"}
+                        breakClassName={"break"}
+                    />
+                </div>
             </div>
         )
     }

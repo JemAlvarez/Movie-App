@@ -1,6 +1,10 @@
 .movies-shows {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: $m-size;
     margin-top: $l-size;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $desktop-breakpoint) {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: 1fr 1fr;
+    }
 }

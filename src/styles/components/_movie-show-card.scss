@@ -1,14 +1,22 @@
 .movie-show-card {
     background: rgba(darken(#202523, 10%), 0.8);
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 0.5fr 2fr;
+    height: 228px;
+    margin-bottom: $m-size;
+
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: 1fr 1fr;
+        height: 100%;
+        margin-bottom: 0;
+    }
 }
 
 .movie-show-card__image {
     cursor: pointer;
-    height: 100%;
+    height: 228px;
     position: relative;
-    width: 100%;
+    width: 154px;
 
     &::after {
         background: rgba(0, 0, 0, 0.8);
@@ -34,6 +42,11 @@
     &:hover::after {
         width: 100%;
     }
+
+    @media (min-width: $desktop-breakpoint) {
+        height: 100%;
+        width: 100%;
+    }
 }
 
 .movie-show-card__description {
@@ -46,6 +59,8 @@
 }
 
 .description__title {
+    margin-top: 0;
+
     a {
         color: $light-red;
         text-decoration: none;
@@ -54,20 +69,47 @@
             color: darken($light-red, 5%);
         }
     }
+
+    @media (min-width: $desktop-breakpoint) {
+        margin-top: $m-size;
+    }
 }
 
 .description__average {
     color: $white-red;
+    font-size: $font-size-small;
+    margin-top: 0;
     margin-right: $m-size;
+
+    @media (min-width: $desktop-breakpoint) {
+        margin-top: $m-size;
+    }
 }
 
 .description__date {
     color: $white-red;
+    font-size: $font-size-small;
+    margin-top: 0;
     margin-left: $m-size;
+
+    @media (min-width: $desktop-breakpoint) {
+        margin-top: $m-size;
+    }
 }
 
 .description__overview {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
     color: $off-white;
+    font-size: $font-size-small;
+    margin-top: 0;
+
+    @media (min-width: $desktop-breakpoint) {
+        margin-top: $m-size;
+        -webkit-line-clamp: 6;
+    }
 }
 
 .description__info {
@@ -84,11 +126,4 @@
             background: darken($dark-red, 5%);
         }
     }
-}
-
-.description__overview {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
 }

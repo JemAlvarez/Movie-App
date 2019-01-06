@@ -21,8 +21,10 @@ class ShowsPage extends React.Component {
     }
     render() {
         return (
-            <div className="content-container movies-shows">
-                {this.renderShows()}
+            <div>
+                <div className="content-container movies-shows">
+                    {this.renderShows()}
+                </div>
                 <div className="paginator">
                     <ReactPaginate
                         previousLabel={"<"}

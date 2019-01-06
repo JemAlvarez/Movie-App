@@ -1,0 +1,46 @@
+.person-card {
+    align-items: center;
+    background: rgba(darken(#202523, 10%), 0.8);
+    display: grid;
+    height: 100%;
+    justify-items: center;
+    width: 100%;
+}
+
+.person-card__image {
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    img {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    &::after {
+        background: rgba(0, 0, 0, 0.8);
+        content: '';
+        height: 0;
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        transition: 0.3s all ease;
+        top: 0;
+        width: 100%;
+    }
+
+    &:hover::after {
+        height: 100%;
+    }
+}
+
+.person-card__name {
+    text-align: center;
+
+    a {
+        color: $light-red;
+        text-decoration: none;
+        word-spacing: 999px;
+    }
+}

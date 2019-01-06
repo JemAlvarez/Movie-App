@@ -1,0 +1,12 @@
+.persons-page {
+    margin-top: $l-size;
+    display: grid;
+    grid-gap: $m-size;
+    grid-template-columns: 1fr 1fr;
+
+    @media (min-width: $desktop-breakpoint) {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

@@ -22,21 +22,25 @@ class PersonsPage extends React.Component {
     render() {
         return (
             <div>
-                {this.renderPersons()}
-                <ReactPaginate
-                    previousLabel={"previous"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    initialPage={0}
-                    pageCount={this.props.pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    onPageChange={this.handlePageClick}
-                    activeClassName={"active"}
-                // breakClassName={"break-me"}
-                // containerClassName={"pagination"}
-                // subContainerClassName={"pages pagination"}
-                />
+                <div className="content-container persons-page">
+                    {this.renderPersons()}
+                </div>
+                <div className="paginator">
+                    <ReactPaginate
+                        previousLabel={"<"}
+                        nextLabel={">"}
+                        breakLabel={"..."}
+                        initialPage={0}
+                        pageCount={this.props.pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        onPageChange={this.handlePageClick}
+                        pageLinkClassName={"page"}
+                        disabledClassName={"disabled-arrow"}
+                        activeClassName={"active-page"}
+                        breakClassName={"break"}
+                    />
+                </div>
             </div>
         )
     }

@@ -21,8 +21,11 @@ class MoviesPage extends React.Component {
     }
     render() {
         return (
-            <div className="content-container movies-shows">
-                {this.renderMovs()}
+            <div>
+                <div className="content-container movies-shows">
+                    {this.renderMovs()}
+
+                </div>
                 <div className="paginator">
                     <ReactPaginate
                         previousLabel={"<"}

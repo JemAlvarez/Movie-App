@@ -13,7 +13,7 @@
 .home__item {
     color: white;
     font-size: $font-size-medium;
-    font-style: none;
+    text-decoration: none;
     height: 100%;
     position: relative;
     text-shadow: 1px 1px black;
@@ -24,6 +24,7 @@
         width: 100%;
 
         img {
+            position: relative;
             height: 100%;
             opacity: 0.8;
             width: 100%;
@@ -34,6 +35,24 @@
             left: 5px;
             margin: 0;
             position: absolute;
+        }
+
+        &::after {
+            background: rgba(0, 0, 0, 0.8);
+            content: '';
+            height: 0;
+            left: 50%;
+            pointer-events: none;
+            position: absolute;
+            top: 50%;
+            transition: 0.3s all ease;
+            transform: translate(-50%, -50%);
+            width: 0;
+        }
+
+        &:hover::after {
+            height: 100%;
+            width: 100%;
         }
     }
 }

@@ -54,7 +54,7 @@ class PersonPage extends React.Component {
                                         <div>
                                             <Link to={`/${item.media_type}/${item.id}`}>
                                                 <img
-                                                    src={`https://image.tmdb.org/t/p/w154${item.poster_path}`}
+                                                    src={!item.poster_path ? '/images/placeholder.jpg' : `https://image.tmdb.org/t/p/w154${item.poster_path}`}
                                                 />
                                             </Link>
                                             <Link to={`/${item.media_type}/${item.id}`}>

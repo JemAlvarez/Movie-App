@@ -1,0 +1,17 @@
+.search-page {
+    margin-top: $l-size;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $desktop-breakpoint) {
+        display: grid;
+        grid-gap: $m-size;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.search-page__error {
+    color: $off-white;
+    font-style: italic;
+    font-weight: 700;
+    padding: $m-size 0;
+}

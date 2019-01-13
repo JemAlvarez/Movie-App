@@ -25,27 +25,32 @@ class MoviePage extends React.Component {
                 }))
             }, 500);
             return (
-                <div>
-                    <div
-                        style={!!mov.backdrop_path ? { backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mov.backdrop_path})` } : { backgroundImage: `url(/images/placeholder.jpg)` }}
-                        className="backdrop"
-                    >
-                        <div className="layer">
+                <div className="movie-show">
+                    <div className="movie-show__main-container">
+                        <div
+                            style={!!mov.backdrop_path ? { backgroundImage: `url(https://image.tmdb.org/t/p/w1280${mov.backdrop_path})` } : { backgroundImage: `url(/images/placeholder.jpg)` }}
+                            className="movie-show__backdrop"
+                        ></div>
+                        <div className="content-container movie-show__main">
                             <img
+                                className="movie-show__image"
                                 style={{ width: 300 }}
                                 src={!!mov.poster_path ? `https://image.tmdb.org/t/p/w300${mov.poster_path}` : '/images/placeholder.jpg'}
                             />
-                            <div>
-                                <h2>{mov.title}</h2>
-                                <h3>Genres: {this.ifNull(this.state.genres)}</h3>
-                                <h5>{this.ifNull(mov.runtime)} mins</h5>
-                                <h5>{this.ifNull(mov.tagline)}</h5>
-                                <h4>{!!mov.release_date ? mov.release_date.substring(0, 4) : '-'}</h4>
-                                <h3>{mov.vote_average * 10}%</h3>
-                                <h3>Overview</h3>
-                                <p>{this.ifNull(mov.overview)}</p>
-                                {!!mov.homepage && <a href={mov.homepage} target="_blank">Movie's page</a>}
-                                <a href={`https://www.imdb.com/title/${mov.imdb_id}`} target="_blank">See in imdb</a>
+                            <div className="moive-show__description">
+                                <h2 className="movie-show__title">{mov.title} <spam> ({this.ifNull(mov.tagline)})</spam></h2>
+                                <h3 className="movie-show__genres">Genres: {this.ifNull(this.state.genres)}</h3>
+                                <div className="movie-show__subcontainer">
+                                    <h4 className="movie-show__time">{this.ifNull(mov.runtime)} mins</h4>
+                                    <h4 className="movie-show__date">{!!mov.release_date ? mov.release_date.substring(0, 4) : '-'}</h4>
+                                    <h4 className="movie-show__vote">{mov.vote_average * 10}%</h4>
+                                </div>
+                                <h3 className="movie-show__overview-heading">Overview</h3>
+                                <p className="movie-show__overview">{this.ifNull(mov.overview)}</p>
+                                <div className="movie-show__links">
+                                    {!!mov.homepage && <a className="movie-show__movie-page" href={mov.homepage} target="_blank">Movie's page</a>}
+                                    <a className="movie-show__imdb" href={`https://www.imdb.com/title/${mov.imdb_id}`} target="_blank">See in imdb</a>
+                                </div>
                             </div>
                         </div>
                     </div>

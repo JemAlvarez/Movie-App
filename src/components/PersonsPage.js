@@ -12,7 +12,7 @@ class PersonsPage extends React.Component {
     renderPersons = () => {
         return this.props.persons.map(ppl => {
             return (
-                <PersonCard person={ppl} size={185} />
+                <PersonCard person={ppl} size={300} />
             )
         })
     }

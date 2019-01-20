@@ -25,24 +25,54 @@
     }
 }
 
+.movie-show__heading {
+    color: $white-red;
+    font-size: $font-size-large;
+    margin-bottom: $m-size;
+    text-transform: uppercase;
+}
+
+.movie-show__heading--top {
+    margin-top: $xl-size;
+}
+
 .movie-show__main-container {
     position: relative;
 }
 
 .movie-show__main {
     display: grid;
-    grid-template-columns: 0.5fr 2fr;
-    padding: $l-size 0;
-    position: relative;
-    z-index: 3;
+    grid-template-columns: 1fr;
+    
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: 0.5fr 2fr;
+        padding: $l-size 0;
+        position: relative;
+        z-index: 3;
+    }
 }
 
 .movie-show__image {
     border-radius: 3px;
+    margin-top: $xl-size;
+    justify-self: center;
+    width: 250px;
+    z-index: 2;
+
+    @media (min-width: $desktop-breakpoint) {
+        margin: 0;
+        justify-self: normal;
+        width: 300px;
+    }
 }
 
 .moive-show__description {
-    margin-left: $xl-size;
+    margin-bottom: $xl-size;
+    z-index: 2;
+    
+    @media (min-width: $desktop-breakpoint) {
+        margin-left: $xl-size;
+    }
 }
 
 .movie-show__title {
@@ -52,6 +82,7 @@
     spam {
         font-size: $font-size-medium;
         opacity: 0.6;
+        display: block;
     }
 }
 
@@ -70,11 +101,6 @@
     }
 }
 
-.movie-show__overview-heading {
-    font-size: $font-size-large;
-    margin-bottom: $m-size;
-}
-
 .movie-show__links {
     text-align: center;
     
@@ -85,6 +111,67 @@
 
         &:hover {
             color: $medium-red;
+        }
+    }
+}
+
+.cast-container {
+    display: grid;
+    grid-gap: $s-size;
+    grid-template-columns: repeat(3, 1fr);
+
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+.recommendation-container {
+    display: grid;
+    grid-gap: $s-size;
+    grid-template-columns: repeat(2, 1fr);
+    
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.movie-show__prod {
+    color: $white-red;
+    text-transform: uppercase;
+}
+
+.movie-show__last-season {
+    background: rgba($dark-red, .7);
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: $m-size;
+    
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: 0.5fr 2fr;
+    }
+}
+
+.last-season__image {
+    width: 154px;
+    justify-self: center;
+    margin-bottom: $s-size;
+    
+    @media (min-width: $desktop-breakpoint) {
+        justify-self: normal;
+        margin-bottom: 0;
+    }
+}
+
+.last-season__content {
+    * {
+        margin: 0;
+        margin-left: $s-size;
+        margin-bottom: 0.7rem;
+    }
+
+    @media (min-width: $large-desktop-breakpoint) {
+        * {
+            margin-bottom: $m-size;
         }
     }
 }

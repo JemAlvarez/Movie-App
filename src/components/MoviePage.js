@@ -34,7 +34,6 @@ class MoviePage extends React.Component {
                         <div className="content-container movie-show__main">
                             <img
                                 className="movie-show__image"
-                                style={{ width: 300 }}
                                 src={!!mov.poster_path ? `https://image.tmdb.org/t/p/w300${mov.poster_path}` : '/images/placeholder.jpg'}
                             />
                             <div className="moive-show__description">
@@ -45,7 +44,7 @@ class MoviePage extends React.Component {
                                     <h4 className="movie-show__date">{!!mov.release_date ? mov.release_date.substring(0, 4) : '-'}</h4>
                                     <h4 className="movie-show__vote">{mov.vote_average * 10}%</h4>
                                 </div>
-                                <h3 className="movie-show__overview-heading">Overview</h3>
+                                <h3 className="movie-show__heading">Overview</h3>
                                 <p className="movie-show__overview">{this.ifNull(mov.overview)}</p>
                                 <div className="movie-show__links">
                                     {!!mov.homepage && <a className="movie-show__movie-page" href={mov.homepage} target="_blank">Movie's page</a>}
@@ -54,20 +53,24 @@ class MoviePage extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2>cast</h2>
+                    <div className="content-container">
+                        <h2 className="movie-show__heading movie-show__heading--top">cast</h2>
                         {this.props.cast.length === 0 ? (
                             <p>No cast</p>
                         ) : (
-                                this.props.cast.map(person => <PersonCard person={person} size={92} />)
+                                <div className="cast-container">
+                                    {this.props.cast.map(person => <PersonCard person={person} size={185} />)}
+                                </div>
                             )}
                     </div>
-                    <div>
-                        <h2>recommendations</h2>
+                    <div className="content-container">
+                        <h2 className="movie-show__heading movie-show__heading--top">recommendations</h2>
                         {this.props.rec.length === 0 ? (
                             <p>No items</p>
                         ) : (
-                                this.props.rec.map(rec => <RecommendationCard item={rec} />)
+                                <div className="recommendation-container">
+                                    {this.props.rec.map(rec => <RecommendationCard item={rec} />)}
+                                </div>
                             )}
                     </div>
                 </div>

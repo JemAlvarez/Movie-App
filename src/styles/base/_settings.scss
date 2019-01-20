@@ -20,4 +20,12 @@ $xl-size: 4.8rem;
 
 // Breakpoints
 $desktop-breakpoint: 45rem;
-$large-desktop-breakpoint: 65rem;
+$large-desktop-breakpoint: 52rem;
+
+// Mixins
+@mixin wrap-text($line-n) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $line-n;
+    -webkit-box-orient: vertical;
+}

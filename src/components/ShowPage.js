@@ -29,57 +29,66 @@ class ShowPage extends React.Component {
                 }))
             }, 500);
             return (
-                <div>
-                    <div
-                        style={!!show.backdrop_path ? { backgroundImage: `url(https://image.tmdb.org/t/p/w1280${show.backdrop_path})` } : { backgroundImage: `url(/images/placeholder.jpg)` }}
-                        className="backdrop"
-                    >
-                        <div className="layer">
+                <div className="movie-show">
+                    <div className="movie-show__main-container">
+                        <div
+                            style={!!show.backdrop_path ? { backgroundImage: `url(https://image.tmdb.org/t/p/w1280${show.backdrop_path})` } : { backgroundImage: `url(/images/placeholder.jpg)` }}
+                            className="movie-show__backdrop"
+                        ></div>
+                        <div className="content-container movie-show__main">
                             <img
-                                style={{ width: 300 }}
+                                className="movie-show__image"
                                 src={!!show.poster_path ? `https://image.tmdb.org/t/p/w300${show.poster_path}` : '/images/placeholder.jpg'}
                             />
-                            <div>
-                                <h2>{show.name}</h2>
-                                <h3>Genres: {this.state.genres}</h3>
-                                <h5>{this.ifNull(show.number_of_seasons)} seasons</h5>
+                            <div className="moive-show__description">
+                                <h2 className="movie-show__title">{show.name}</h2>
+                                <h3 className="movie-show__genres">Genres: {this.state.genres}</h3>
+                                <div className="movie-show__subcontainer">
+                                    <h4>{this.ifNull(show.number_of_seasons)} seasons</h4>
+                                    <h4>{!!show.first_air_date ? show.first_air_date.substring(0, 4) : '-'}</h4>
+                                    <h4>{show.vote_average * 10}%</h4>
+                                </div>
                                 <h4>Episode average: {this.state.mins} mins</h4>
-                                <h4>{!!show.first_air_date ? show.first_air_date.substring(0, 4) : '-'}</h4>
-                                <h3>{show.vote_average * 10}%</h3>
-                                <h3>Still in production : {`${show.in_production}`}</h3>
-                                <h3>Overview</h3>
-                                <p>{this.ifNull(show.overview)}</p>
-                                {!!show.homepage && <a href={show.homepage} target="_blank">Movie's page</a>}
+                                <h4>Still in production: <span className="movie-show__prod">{`${show.in_production}`}</span></h4>
+                                <h3 className="movie-show__heading">Overview</h3>
+                                <p className="movie-show__overview">{this.ifNull(show.overview)}</p>
+                                <div className="movie-show__links">
+                                    {!!show.homepage && <a className="movie-show__movie-page" href={show.homepage} target="_blank">Shows's page</a>}
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2>cast</h2>
+                    <div className="content-container">
+                        <h2 className="movie-show__heading movie-show__heading--top">cast</h2>
                         {this.props.cast.length === 0 ? (
                             <p>No cast</p>
                         ) : (
-                                this.props.cast.map(person => <PersonCard person={person} size={92} />)
+                                <div className="cast-container">
+                                    {this.props.cast.map(person => <PersonCard person={person} size={185} />)}
+                                </div>
                             )}
                     </div>
-                    <div>
-                        <h2>latest season</h2>
-                        <div>
+                    <div className="content-container">
+                        <h2 className="movie-show__heading movie-show__heading--top">latest season</h2>
+                        <div className="movie-show__last-season">
                             <img
-                                style={{ width: 154 }}
+                                className="last-season__image"
                                 src={!this.state.lastSeason.poster_path ? '/images/placeholder.jpg' : `https://image.tmdb.org/t/p/w154${this.state.lastSeason.poster_path}`}
                             />
-                            <div>
+                            <div className="last-season__content">
                                 <h2>{this.ifNull(this.state.lastSeason.name)}</h2>
                                 <h3>{`${this.ifNull(this.state.lastSeason.air_date)} | ${this.ifNull(this.state.lastSeason.episode_count)} episodes`}</h3>
                                 <p>{this.state.lastSeason.overview}</p>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <h2>recommendations</h2>
+                    <div className="content-container">
+                        <h2 className="movie-show__heading movie-show__heading--top">recommendations</h2>
                         {this.props.rec.length === 0 ? (
                             <p>No items</p>) : (
-                                this.props.rec.map(rec => <RecommendationCard item={rec} />)
+                                <div className="recommendation-container">
+                                    {this.props.rec.map(rec => <RecommendationCard item={rec} />)}
+                                </div>
                             )}
                     </div>
                 </div>

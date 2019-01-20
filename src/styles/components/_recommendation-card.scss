@@ -1,0 +1,54 @@
+.rec-card {
+    // background: purple;
+}
+
+.rec-card__image {
+    position: relative;
+    width: 100%;
+
+    img {
+        border-radius: 3px;
+        width: 100%;
+    }
+}
+
+.rec-card__date {
+    background: rgba(0,0,0,.8);
+    bottom: 3px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    color: $off-white;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+
+    p {
+        margin: 0;
+        padding: $s-size;
+    }
+}
+
+.rec-card__content {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rec-card__title {
+    margin: 0;
+    padding: $s-size 0;
+    
+    a {
+        @include wrap-text(1);
+        color: $light-red;
+        text-decoration: none;
+    }
+}
+
+.rec-card__rate {
+    color: $off-white;
+    font-size: inherit;
+    margin: 0;
+    padding: $s-size 0;
+}

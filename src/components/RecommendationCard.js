@@ -11,8 +11,9 @@ class RecommendationCard extends React.Component {
     type = !!this.item.name ? 'tv' : 'movie'
     render() {
         return (
-            <div>
+            <div className="rec-card">
                 <Link
+                    className="rec-card__image"
                     to={`/${this.type}/${this.item.id}`}
                     onClick={() => {
                         if (this.type === 'tv') {
@@ -23,14 +24,22 @@ class RecommendationCard extends React.Component {
                     }}
                 >
                     <img
-                        src={`https://image.tmdb.org/t/p/w185${this.item.backdrop_path}`}
+                        src={`https://image.tmdb.org/t/p/w300${this.item.backdrop_path}`}
                         onMouseEnter={() => { this.setState(() => ({ over: true })) }}
                         onMouseLeave={() => { this.setState(() => ({ over: false })) }}
                     />
-                    {this.state.over && <p>{this.item.first_air_date || this.item.release_date}</p>}
+                    {
+                        this.state.over && (
+                            <div className="rec-card__date">
+                                <p>
+                                    {this.item.first_air_date || this.item.release_date}
+                                </p>
+                            </div>
+                        )
+                    }
                 </Link>
-                <div>
-                    <h1><Link
+                <div className="rec-card__content">
+                    <h4 className="rec-card__title"><Link
                         to={`/${this.type}/${this.item.id}`}
                         onClick={() => {
                             if (this.type === 'tv') {
@@ -41,8 +50,8 @@ class RecommendationCard extends React.Component {
                         }}
                     >
                         {this.item.title || this.item.name}
-                    </Link></h1>
-                    <h3>{this.item.vote_average}</h3>
+                    </Link></h4>
+                    <h5 className="rec-card__rate">{this.item.vote_average}</h5>
                 </div>
             </div>
         )

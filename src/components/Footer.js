@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, animateScroll as scroll } from 'react-scroll'
+import { IoIosArrowUp } from 'react-icons/io'
 
 const Footer = () => (
     <div className="footer">
@@ -9,7 +10,7 @@ const Footer = () => (
             smooth={true}
             duration={500}
         >
-            Scroll Top
+            <IoIosArrowUp />
         </Link>
         <p>@Jem Alvarez - 2019</p>
     </div>

@@ -7,6 +7,7 @@ import { setKeyword } from '../actions/keyword'
 import { startGetShowById } from '../actions/shows'
 import { startGetMovieById } from '../actions/movies'
 import { startGetPersonById } from '../actions/persons'
+import { IoMdCloseCircleOutline } from 'react-icons/io'
 
 class Searchbar extends React.Component {
     state = {
@@ -103,7 +104,7 @@ class Searchbar extends React.Component {
                                 document.getElementById("searchbar-form").reset()
                             }}
                         >
-                            x
+                            <IoMdCloseCircleOutline />
                         </button>
                     </div>
                 </div>

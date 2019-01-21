@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { startGetPopularMovies } from '../actions/movies'
 import MovieShowCard from './MovieShowCard'
+import { IoIosArrowBack, IoIosArrowForward, IoIosMore } from 'react-icons/io'
 
 // Popular Movies Page
 class MoviesPage extends React.Component {
@@ -28,9 +29,9 @@ class MoviesPage extends React.Component {
                 </div>
                 <div className="paginator">
                     <ReactPaginate
-                        previousLabel={"<"}
-                        nextLabel={">"}
-                        breakLabel={"..."}
+                        previousLabel={<IoIosArrowBack />}
+                        nextLabel={<IoIosArrowForward />}
+                        breakLabel={<IoIosMore />}
                         initialPage={0}
                         pageCount={this.props.pageCount}
                         marginPagesDisplayed={2}

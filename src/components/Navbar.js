@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import { FaBars } from 'react-icons/fa'
 
 class Navbar extends React.Component {
     burgerToggle = () => {
@@ -23,7 +24,7 @@ class Navbar extends React.Component {
                         </div>
                     </div>
                     <div className="navNarrow">
-                        <p className="burger" onClick={this.burgerToggle}><i>|||</i></p>
+                        <p className="burger" onClick={this.burgerToggle}><i><FaBars /></i></p>
                         <div className="narrowLinks">
                             <NavLink to="/" activeClassName="active" exact={true} onClick={this.burgerToggle}> home </NavLink>
                             <NavLink to="/movies" activeClassName="active" onClick={this.burgerToggle}> movies </NavLink>

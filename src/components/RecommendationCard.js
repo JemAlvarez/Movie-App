@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { startGetShowById } from '../actions/shows'
 import { startGetMovieById } from '../actions/movies'
+import { FaStar } from 'react-icons/fa'
 
 class RecommendationCard extends React.Component {
     state = {
@@ -51,7 +52,7 @@ class RecommendationCard extends React.Component {
                     >
                         {this.item.title || this.item.name}
                     </Link></h4>
-                    <h5 className="rec-card__rate">{this.item.vote_average}</h5>
+                    <h5 className="rec-card__rate">{this.item.vote_average} <FaStar /></h5>
                 </div>
             </div>
         )

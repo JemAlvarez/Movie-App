@@ -33,8 +33,10 @@
 
 .rec-card__content {
     font-size: 1.5rem;
-    display: flex;
-    justify-content: space-between;
+    // display: flex;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
 }
 
 .rec-card__title {
@@ -50,7 +52,7 @@
 
 .rec-card__rate {
     color: $off-white;
-    font-size: inherit;
+    font-size: 1.2rem;
     margin: 0;
     padding: $s-size 0;
 }

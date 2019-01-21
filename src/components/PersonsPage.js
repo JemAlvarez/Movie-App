@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import ReactPaginate from 'react-paginate'
 import { startGetPopularPersons } from '../actions/persons'
 import PersonCard from './PersonCard'
+import { IoIosArrowBack, IoIosArrowForward, IoIosMore } from 'react-icons/io'
 
 // Popular Persons Page
 class PersonsPage extends React.Component {
@@ -27,9 +28,9 @@ class PersonsPage extends React.Component {
                 </div>
                 <div className="paginator">
                     <ReactPaginate
-                        previousLabel={"<"}
-                        nextLabel={">"}
-                        breakLabel={"..."}
+                        previousLabel={<IoIosArrowBack />}
+                        nextLabel={<IoIosArrowForward />}
+                        breakLabel={<IoIosMore />}
                         initialPage={0}
                         pageCount={this.props.pageCount}
                         marginPagesDisplayed={2}

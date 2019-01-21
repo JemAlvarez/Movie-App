@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ReactPaginate from 'react-paginate'
 import { startGetAllBySearch } from '../actions/multi'
 import MovieShowCard from './MovieShowCard'
+import { IoIosArrowBack, IoIosArrowForward, IoIosMore } from 'react-icons/io'
 
 // Search Page
 class SearchPage extends React.Component {
@@ -60,9 +61,9 @@ class SearchPage extends React.Component {
                                 </div>
                                 <div className="paginator">
                                     <ReactPaginate
-                                        previousLabel={"<"}
-                                        nextLabel={">"}
-                                        breakLabel={"..."}
+                                        previousLabel={<IoIosArrowBack />}
+                                        nextLabel={<IoIosArrowForward />}
+                                        breakLabel={<IoIosMore />}
                                         initialPage={0}
                                         pageCount={this.props.pageCount}
                                         marginPagesDisplayed={2}

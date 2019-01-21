@@ -18,18 +18,6 @@
     position: relative;
     width: 154px;
 
-    &::after {
-        background: rgba(0, 0, 0, 0.8);
-        content: '';
-        height: 100%;
-        left: 0;
-        pointer-events: none;
-        position: absolute;
-        transition: 0.3s all ease;
-        top: 0;
-        width: 0;
-    }
-
     a {
         height: 100%;
         width: 100%;
@@ -40,13 +28,26 @@
         }
     }
 
-    &:hover::after {
-        width: 100%;
-    }
 
     @media (min-width: $desktop-breakpoint) {
         height: 100%;
         width: 100%;
+
+        &::after {
+            background: rgba(0, 0, 0, 0.8);
+            content: '';
+            height: 100%;
+            left: 0;
+            pointer-events: none;
+            position: absolute;
+            transition: 0.3s all ease;
+            top: 0;
+            width: 0;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
     }
 }
 

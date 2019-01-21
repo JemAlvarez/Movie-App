@@ -12,6 +12,7 @@ import ShowsPage from '../components/ShowsPage'
 import SearchPage from '../components/SearchPage'
 import Navbar from '../components/Navbar'
 import Searchbar from '../components/Searchbar'
+import Footer from '../components/Footer'
 
 export const history = createHistory()
 
@@ -31,6 +32,7 @@ const AppRouter = () => (
                 <Route path="/person/:id" component={PersonPage} />
                 <Route component={NotFoundPage} />
             </Switch>
+            <Footer />
         </div>
     </Router>
 )

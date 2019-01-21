@@ -17,6 +17,9 @@ class Searchbar extends React.Component {
     onInputChange = (keyword) => {
         this.props.dispatch(setKeyword(keyword))
     }
+    resetForm = (id) => {
+        document.getElementById("searchbar-form").reset()
+    }
     renderSuggestions = () => {
         if (this.state.suggest === true && this.props.suggestion.length !== 0 && this.state.focused === true) {
             return (
@@ -24,7 +27,6 @@ class Searchbar extends React.Component {
                     {this.props.suggestion.map(sug =>
                         <div className="searchbar__suggestion">
                             <Link
-
                                 to={`/${sug.media_type}/${sug.id}`}
                                 key={sug.id}
                                 onClick={(e) => {
@@ -51,48 +53,59 @@ class Searchbar extends React.Component {
         return (
             <div className="searchbar">
                 <div className="content-container">
-                    <form
-                        autoComplete="off"
-                        // If word is > 2 dispatch and set states 
-                        onSubmit={(e) => {
-                            e.preventDefault()
-                            if (this.props.keyword.length >= 2) {
-                                this.props.dispatch(startGetAllBySearch(this.props.keyword, 1))
-                                history.push('/search')
-                                this.setState(() => ({ error: false }))
-                                this.setState(() => ({ suggest: false }))
-                            } else {
-                                this.setState(() => ({ error: true }))
-                            }
-                        }}>
-                        <input
-                            className="searchbar__input"
-                            placeholder="Search for a movie, show, or person"
-                            type="text"
-                            // Change state when focused
-                            onFocus={(e) => {
-                                this.setState(() => ({ focused: true }))
-                            }}
-                            // Change state when unfocused
-                            onBlur={(e) => {
-                                setTimeout(() => {
-                                    this.setState(() => ({ focused: false }))
-                                }, 150);
-                            }}
-                            // Dispatch and set state when value is changed
-                            onChange={(e) => {
-                                this.onInputChange(e.target.value)
-                                if (e.target.value.length >= 1) {
-                                    this.props.dispatch(startGetAllSuggestion(e.target.value, 1))
-                                    this.setState(() => ({ suggest: true, error: false }))
-                                } else {
+                    <div className="searchbar-form__container">
+                        <form
+                            id="searchbar-form"
+                            autoComplete="off"
+                            // If word is > 2 dispatch and set states 
+                            onSubmit={(e) => {
+                                e.preventDefault()
+                                if (this.props.keyword.length >= 2) {
+                                    this.props.dispatch(startGetAllBySearch(this.props.keyword, 1))
+                                    history.push('/search')
+                                    this.setState(() => ({ error: false }))
                                     this.setState(() => ({ suggest: false }))
+                                } else {
+                                    this.setState(() => ({ error: true }))
                                 }
+                            }}>
+                            <input
+                                className="searchbar__input"
+                                placeholder="Search for a movie, show, or person"
+                                type="text"
+                                // Change state when focused
+                                onFocus={(e) => {
+                                    this.setState(() => ({ focused: true }))
+                                }}
+                                // Change state when unfocused
+                                onBlur={(e) => {
+                                    setTimeout(() => {
+                                        this.setState(() => ({ focused: false }))
+                                    }, 150);
+                                }}
+                                // Dispatch and set state when value is changed
+                                onChange={(e) => {
+                                    this.onInputChange(e.target.value)
+                                    if (e.target.value.length >= 1) {
+                                        this.props.dispatch(startGetAllSuggestion(e.target.value, 1))
+                                        this.setState(() => ({ suggest: true, error: false }))
+                                    } else {
+                                        this.setState(() => ({ suggest: false }))
+                                    }
+                                }}
+                            />
+                            {this.renderSuggestions()}
+                            {this.state.error && <p className="searchbar__error">Type more than one character.</p>}
+                        </form>
+                        <button
+                            className="searchbar__reset-btn"
+                            onClick={(e) => {
+                                document.getElementById("searchbar-form").reset()
                             }}
-                        />
-                        {this.renderSuggestions()}
-                        {this.state.error && <p className="searchbar__error">Type more than one character.</p>}
-                    </form>
+                        >
+                            x
+                        </button>
+                    </div>
                 </div>
             </div>
         )

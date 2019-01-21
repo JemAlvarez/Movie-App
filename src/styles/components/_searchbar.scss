@@ -46,3 +46,21 @@
     margin: 0;
     padding: $m-size 0;
 }
+
+.searchbar-form__container {
+    position: relative;
+
+    &:hover > .searchbar__reset-btn {
+        display: block;
+    }
+}
+
+.searchbar__reset-btn {
+    background: none;
+    border: none;
+    color: white;
+    display: none;
+    position: absolute;
+    top: 13px;
+    right: 20px;
+}

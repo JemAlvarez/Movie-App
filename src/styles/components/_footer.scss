@@ -1,0 +1,13 @@
+.footer {
+    background: rgba($dark-red, 0.7);
+    margin-top: $xl-size;
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.footer__scroll-top {
+    &:hover {
+        color: $white-red;
+        cursor: pointer;
+    }
+}

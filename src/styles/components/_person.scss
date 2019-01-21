@@ -1,0 +1,88 @@
+.person {
+    color: white;
+}
+
+.person__heading {
+    color: $white-red;
+    font-size: $font-size-large;
+    margin-bottom: $m-size;
+    text-transform: uppercase;
+}
+
+.person__heading--top {
+    margin-top: $xl-size;
+}
+
+.person__subheading {
+    color: $off-white;
+    font-size: $font-size-medium;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.person__information {
+    color: white;
+    font-size: $font-size-small;
+    text-transform: capitalize;
+}
+
+.person__main {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: 0.5fr 2fr;
+        padding: $l-size 0;
+    }
+}
+
+.person__image {
+    border-radius: 3px;
+    justify-self: center;
+    margin-top: $xl-size;
+    width: 250px;
+
+    @media (min-width: $desktop-breakpoint) {
+        margin: 0;
+        justify-self: normal;
+        width: 300px;
+    }
+}
+
+.person__description {
+    @media (min-width: $desktop-breakpoint) {
+        margin-left: $xl-size;
+    }
+}
+
+.person__name {
+    font-size: $font-size-xlarge;
+    margin-bottom: $s-size;
+}
+
+.person__bio {
+    letter-spacing: 2px;
+    line-height: 20px;
+    overflow-wrap: break-word;
+}
+
+.person__info {
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: 1fr 2fr;
+        text-align: left;
+    }
+}
+
+.known-for__container {
+    display: grid;
+    grid-gap: $s-size;
+    grid-template-columns: repeat(2, 1fr);
+    
+    @media (min-width: $desktop-breakpoint) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

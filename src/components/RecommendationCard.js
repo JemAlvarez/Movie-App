@@ -24,7 +24,7 @@ class RecommendationCard extends React.Component {
                     }}
                 >
                     <img
-                        src={`https://image.tmdb.org/t/p/w300${this.item.backdrop_path}`}
+                        src={!this.item.backdrop_path ? '/images/placeholder.jpg' : `https://image.tmdb.org/t/p/w300${this.item.backdrop_path}`}
                         onMouseEnter={() => { this.setState(() => ({ over: true })) }}
                         onMouseLeave={() => { this.setState(() => ({ over: false })) }}
                     />
